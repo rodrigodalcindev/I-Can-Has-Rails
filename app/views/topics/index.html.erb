@@ -7,6 +7,8 @@
     <th>URL</th>
     <th></th>
     <th></th>
+    <th></th>
+    <th></th>
   </tr>
 
 <% @topics.each do |topic| %>
@@ -14,6 +16,8 @@
     <td><%= link_to topic.title, topic %></td>
     <td><%= topic.description %></td>
     <td><%= link_to topic.url, topic.url, html_options = {:target  => '_blank'} %></td>
+    <td><%= pluralize(topic.votes.count, "vote") %></td>
+    <td><%= button_to '+1', votes_path(topic_id: topic.id), method: :post %></td>
     <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
     <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
